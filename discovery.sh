@@ -14,4 +14,6 @@ echo "combine all configurations into single type_config.json"
 jq -s '{"types": .}' *.json > type_config.json
 
 echo "update hermes ConfigMap with kubectl"
-kubectl create configmap "${HERMES_CONFIGMAP}" --from-file=type_config.json --dry-run -o yaml | kubectl replace -f -
+kubectl create configmap "${HERMES_CONFIGMAP}" --from-file=type_config.json --dry-run -o yaml | kubectl replace --force -f -
+
+echo "done"
