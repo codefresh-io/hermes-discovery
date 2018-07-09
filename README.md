@@ -90,7 +90,7 @@ metadata:
 data:
   # DockerHub trigger type configuration
   config.json: |
-  {{ .Files.Get "config.json.txt" | indent 4 }}
+  {{ (.Files.Glob "files/config.json").AsConfig | indent 4 }}
 ```
 
 ### Hermes Discovery
