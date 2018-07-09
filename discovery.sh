@@ -8,7 +8,7 @@ readarray array < <(kubectl get cm -l discovery=event-provider -o name --namespa
 echo "go over ConfigMaps and read config.json into files"
 for index in "${!array[@]}"; do
   echo "creating JSON file type_${index}.json"
-  kubectl get configmap ${array[$index]} -o "jsonpath={.data['config\.json']}" --namespace ${NAMESPACE} > "type_${index}.json"
+  kubectl get ${array[$index]} -o "jsonpath={.data['config\.json']}" --namespace ${NAMESPACE} > "type_${index}.json"
 done
 
 echo "combine all configurations into single type_config.json"
